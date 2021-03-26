@@ -22,6 +22,7 @@ int main()
    if (rewka == 11) {
     std::cout << "Attempt number: " << i << " 11 " << "rewka in a row";
     return 0;
+    
    }
    if (orel == 11) {
     std::cout << "Attempt number: " << i << " 11 " << "orel in a row";
