@@ -1,29 +1,22 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime> // time()
+#include <random>
 #include <vector>
-#include <fstream>
 #include "func.h"
-void attempt();
+#include <numeric>
+float expect_near(float result, float expected);
+uint32_t attempt();
 int main()
 {
- srand(time(NULL));
- for (int j=0;j<1000;j++)
- {
-  attempt();
- }
- std::ofstream fout("sample.txt"); 
- for (int n = 0; n < sample.size();n++) {
-  std::cout << n + 1 << ". " << "11 in a row on Attempt number: " << sample[n] << std::endl;
-  fout << n + 1 << ". " << "11 in a row on Attempt number: " << sample[n] << std::endl;
- }
- int avg=0;
- for (int n = 0; n < sample.size(); n++)
- {
-  avg += sample[n];
- }
- std::cout << "average attempt = " << avg / sample.size();
- fout << "average attempt = " << avg / sample.size();
- fout.close(); 
- return 0;
+	for (uint32_t j=0;j<1000;j++)
+	{
+		sample.push_back(attempt());
+	}
+	float avg=0,avg2=0;
+	avg=std::accumulate(sample.begin(), sample.end(), 0);
+	float expected = pow(0.5, 11);
+	avg = avg / sample.size();
+	avg = 1 / avg;
+	std::cout << "abs_error " << expect_near(avg, expected);
+	
+	return 0;
 }
