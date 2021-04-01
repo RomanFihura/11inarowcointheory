@@ -1,30 +1,33 @@
 #pragma once
 std::vector<int> sample;
-void attempt()
+std::random_device rd;
+std::mt19937 gen1(rd());
+uint32_t attempt()
 {
- int random;
- int rewka = 0, orel = 0;
- for (int i = 0; ; i++)
- {
-  random = rand() % 2;
-  if (random == 1)
-   orel++;
-  else
-   orel = 0;
-  if (random == 0)
-   rewka++;
-  else
-   rewka = 0;
-  if (rewka == 11 || orel == 11)
-  {
-   if (rewka == 11) {
-    sample.push_back(i);
-    break;
-   }
-   if (orel == 11) {
-    sample.push_back(i);
-    break;
-   }
-  }
- }
+	int random, tails = 0, heads = 0;
+	for (int i = 0; ; i++)
+	{
+		random = gen1() % 2;
+		if (random == 1)
+			heads++;
+		else
+			heads = 0;
+		if (random == 0)
+			tails++;
+		else
+			tails = 0;
+		if (tails == 11 || heads == 11)
+		{
+			if (tails == 11) {
+				return i;
+			}
+			if (heads == 11) {
+				return i;
+			}
+		}
+	}
+}
+float expect_near(float result, float expected)
+{
+	return abs(result - expected);
 }
