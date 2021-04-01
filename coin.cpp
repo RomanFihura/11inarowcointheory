@@ -11,7 +11,7 @@ int main()
 	{
 		sample.push_back(attempt());
 	}
-	float avg=0,avg2=0;
+	float avg=0;
 	avg=std::accumulate(sample.begin(), sample.end(), 0);
 	float expected = pow(0.5, 11);
 	avg = avg / sample.size();
